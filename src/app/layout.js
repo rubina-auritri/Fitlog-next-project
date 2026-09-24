@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/footer/Footer";
 import { FitLogProvider } from "@/context/FitlogContext";
+import { ToastContainer } from "react-toastify"; 
 
 
 const oswald = Oswald({
@@ -23,6 +24,7 @@ export default function RootLayout({ children }) {
       <body className={`${oswald.variable} ${inter.variable}`}>
         <FitLogProvider>
           <Navbar />
+          <ToastContainer/> 
           {children}
           <Footer />
         </FitLogProvider>

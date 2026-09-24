@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 import Link from "next/link";
 import {
     FaClock,
@@ -61,7 +62,7 @@ const MyPlan = () => {
     };
 
     return (
-        <main className="min-h-screen bg-[#111111] px-4 py-12 text-white">
+        <main className="min-h-screen bg-[#111111] px-4 py-12 text-white mt-10">
 
             <div className="mx-auto max-w-6xl">
 
@@ -117,8 +118,8 @@ const MyPlan = () => {
                     <button
                         onClick={() => setActiveTab("plan")}
                         className={`pb-4 font-semibold ${activeTab === "plan"
-                                ? "border-b-2 border-[#ccff00] text-[#ccff00]"
-                                : "text-gray-400"
+                            ? "border-b-2 border-[#ccff00] text-[#ccff00]"
+                            : "text-gray-400"
                             }`}
                     >
                         Today&apos;s Plan
@@ -127,8 +128,8 @@ const MyPlan = () => {
                     <button
                         onClick={() => setActiveTab("saved")}
                         className={`pb-4 font-semibold ${activeTab === "saved"
-                                ? "border-b-2 border-[#ccff00] text-[#ccff00]"
-                                : "text-gray-400"
+                            ? "border-b-2 border-[#ccff00] text-[#ccff00]"
+                            : "text-gray-400"
                             }`}
                     >
                         Saved
@@ -240,28 +241,29 @@ const MyPlan = () => {
                                     )}
 
                                     <button
-                                        onClick={() =>
+                                        onClick={() =>{
                                             handleRemove(workout.id)
-                                        }
-                                        className="flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm text-red-400"
+                                            toast.success("Workout removed from your plan!");
+                                        }}
+                                    className="flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm text-red-400"
                                     >
-                                        <FaTimes />
-                                        Remove
-                                    </button>
-
-                                </div>
+                                    <FaTimes />
+                                    Remove
+                                </button>
 
                             </div>
 
-                        ))}
+                            </div>
 
-                    </div>
-
-                )}
+                ))}
 
             </div>
 
-        </main>
+                )}
+
+        </div>
+
+        </main >
     );
 };
 

@@ -4,6 +4,7 @@
 import React from "react";
 import { FaPlus, FaRegBookmark } from "react-icons/fa";
 import { useFitLog } from "@/context/FitlogContext";
+import { toast } from "react-toastify";
 
 const ButtonAction = ({ workout }) => {
     const { plan, saved, setPlan, setSaved } = useFitLog();
@@ -21,7 +22,7 @@ const ButtonAction = ({ workout }) => {
     // Add workout to Plan
     const handleAddToPlan = () => {
         if (alreadyAdded) {
-            alert("This workout is already in your plan!");
+            toast.info("This workout is already in your plan!");
             return;
         }
 
@@ -29,12 +30,13 @@ const ButtonAction = ({ workout }) => {
             ...previousPlan,
             workout,
         ]);
+        toast.success("Workout added to your plan!");
     };
 
     // Save workout for later
     const handleSave = () => {
         if (alreadySaved) {
-            alert("This workout is already saved!");
+            toast.info("This workout is already saved!");
             return;
         }
 
@@ -42,6 +44,7 @@ const ButtonAction = ({ workout }) => {
             ...previousSaved,
             workout,
         ]);
+        toast.success("Workout saved for later!");
     };
 
     return (
@@ -52,11 +55,10 @@ const ButtonAction = ({ workout }) => {
                 type="button"
                 onClick={handleAddToPlan}
                 disabled={alreadyAdded}
-                className={`flex flex-1 items-center justify-center gap-2 rounded-xl px-6 py-4 font-bold transition ${
-                    alreadyAdded
-                        ? "cursor-not-allowed bg-gray-300 text-gray-600"
-                        : "bg-[#C7FF00] text-black hover:bg-[#b5eb00]"
-                }`}
+                className={`flex flex-1 items-center justify-center gap-2 rounded-xl px-6 py-4 font-bold transition ${alreadyAdded
+                    ? "cursor-not-allowed bg-gray-300 text-gray-600"
+                    : "bg-[#C7FF00] text-black hover:bg-[#b5eb00]"
+                    }`}
             >
                 <FaPlus />
 
@@ -70,11 +72,10 @@ const ButtonAction = ({ workout }) => {
                 type="button"
                 onClick={handleSave}
                 disabled={alreadySaved}
-                className={`flex flex-1 items-center justify-center gap-2 rounded-xl border px-6 py-4 font-bold transition ${
-                    alreadySaved
-                        ? "cursor-not-allowed bg-gray-300 text-white-600"
-                        : "bg-[#C7FF00] text-black hover:bg-[#b5eb00]"
-                }`}
+                className={`flex flex-1 items-center justify-center gap-2 rounded-xl border px-6 py-4 font-bold transition ${alreadySaved
+                    ? "cursor-not-allowed bg-gray-300 text-white-600"
+                    : "bg-[#C7FF00] text-black hover:bg-[#b5eb00]"
+                    }`}
             >
                 <FaRegBookmark />
 
