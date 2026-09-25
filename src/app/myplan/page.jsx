@@ -1,6 +1,9 @@
+
 "use client";
+
 import Image from "next/image";
 import React, { useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { toast } from "react-toastify";
 import Link from "next/link";
 import {
@@ -21,9 +24,13 @@ const MyPlan = () => {
         setSaved,
     } = useFitLog();
 
-    const [activeTab, setActiveTab] = useState("plan");
+    const searchParams = useSearchParams();
 
-    // Show plan or saved
+    const [activeTab, setActiveTab] = useState(
+        searchParams.get("tab") || "plan"
+    );
+
+    // Decide which list to display
     const workouts = activeTab === "plan" ? plan : saved;
 
     // Calculate metrics
@@ -37,7 +44,7 @@ const MyPlan = () => {
 
     const calories = workouts.reduce(
         (total, workout) =>
-            total + Number(workout.caloriesBurned || 0),
+            total + Number(workout.calories || 0),
         0
     );
 
@@ -47,23 +54,28 @@ const MyPlan = () => {
             setPlan((prev) =>
                 prev.filter((workout) => workout.id !== id)
             );
+
+            toast.success("Workout removed from your plan!");
         } else {
             setSaved((prev) =>
                 prev.filter((workout) => workout.id !== id)
             );
+
+            toast.success("Workout removed from saved!");
         }
     };
 
-    // Mark as done
+    // Mark workout as done
     const handleDone = (id) => {
         setPlan((prev) =>
             prev.filter((workout) => workout.id !== id)
         );
+
+        toast.success("Workout completed!");
     };
 
     return (
-        <main className="min-h-screen bg-[#111111] px-4 py-12 text-white mt-10">
-
+        <main className="mt-10 min-h-screen bg-[#111111] px-4 py-12 text-white">
             <div className="mx-auto max-w-6xl">
 
                 {/* Heading */}
@@ -74,7 +86,6 @@ const MyPlan = () => {
                 <p className="mt-3 text-gray-400">
                     Cap of five lifts for today. Finish them, then load more.
                 </p>
-
 
                 {/* Metrics */}
                 <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3">
@@ -111,34 +122,34 @@ const MyPlan = () => {
 
                 </div>
 
-
                 {/* Tabs */}
                 <div className="mt-12 flex gap-8 border-b border-gray-700">
 
                     <button
                         onClick={() => setActiveTab("plan")}
-                        className={`pb-4 font-semibold ${activeTab === "plan"
-                            ? "border-b-2 border-[#ccff00] text-[#ccff00]"
-                            : "text-gray-400"
-                            }`}
+                        className={`pb-4 font-semibold ${
+                            activeTab === "plan"
+                                ? "border-b-2 border-[#ccff00] text-[#ccff00]"
+                                : "text-gray-400"
+                        }`}
                     >
                         Today&apos;s Plan
                     </button>
 
                     <button
                         onClick={() => setActiveTab("saved")}
-                        className={`pb-4 font-semibold ${activeTab === "saved"
-                            ? "border-b-2 border-[#ccff00] text-[#ccff00]"
-                            : "text-gray-400"
-                            }`}
+                        className={`pb-4 font-semibold ${
+                            activeTab === "saved"
+                                ? "border-b-2 border-[#ccff00] text-[#ccff00]"
+                                : "text-gray-400"
+                        }`}
                     >
                         Saved
                     </button>
 
                 </div>
 
-
-                {/* Empty */}
+                {/* Empty State */}
                 {workouts.length === 0 ? (
 
                     <div className="py-20 text-center">
@@ -162,7 +173,7 @@ const MyPlan = () => {
 
                 ) : (
 
-                    /* Workout list */
+                    /* Workout List */
                     <div className="mt-8 space-y-4">
 
                         {workouts.map((workout) => (
@@ -194,7 +205,6 @@ const MyPlan = () => {
                                             : workout.equipment}
                                     </p>
 
-
                                     {/* Stats */}
                                     <div className="mt-5 flex flex-wrap gap-5 text-sm text-gray-400">
 
@@ -216,7 +226,6 @@ const MyPlan = () => {
                                     </div>
 
                                 </div>
-
 
                                 {/* Buttons */}
                                 <div className="flex flex-col gap-2 md:w-40">
@@ -241,30 +250,28 @@ const MyPlan = () => {
                                     )}
 
                                     <button
-                                        onClick={() =>{
+                                        onClick={() =>
                                             handleRemove(workout.id)
-                                            toast.success("Workout removed from your plan!");
-                                        }}
-                                    className="flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm text-red-400"
+                                        }
+                                        className="flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm text-red-400"
                                     >
-                                    <FaTimes />
-                                    Remove
-                                </button>
+                                        <FaTimes />
+                                        Remove
+                                    </button>
+
+                                </div>
 
                             </div>
 
-                            </div>
+                        ))}
 
-                ))}
-
-            </div>
-
+                    </div>
                 )}
 
-        </div>
-
-        </main >
+            </div>
+        </main>
     );
 };
 
 export default MyPlan;
+
