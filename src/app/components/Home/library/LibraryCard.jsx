@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { FaRegClock, FaFire, FaStar } from "react-icons/fa";
+import { FaRegClock, FaFire, FaStar, FaDumbbell } from "react-icons/fa";
 
 export default function LibraryCard({ workout }) {
     return (
@@ -35,8 +35,8 @@ export default function LibraryCard({ workout }) {
                     {workout.name}
                 </h3>
 
-                <p className="mt-2 font-[var(--font-inter)] text-sm text-gray-400">
-                    🖇️ {workout.equipment}
+                <p className="flex gap-1 mt-2 font-[var(--font-inter)] text-sm text-gray-400">
+                    <FaDumbbell/> {workout.equipment}
                 </p>
 
                 <div className="mt-5 flex items-center justify-start gap-5 border-t border-[#292929] pt-4 font-[var(--font-inter)] text-xs text-gray-400">
@@ -47,7 +47,7 @@ export default function LibraryCard({ workout }) {
 
                     <span className="flex items-center gap-1">
                         <FaFire />
-                        {workout.calories} kcal
+                        {workout.caloriesBurned} kcal
                     </span>
 
                     <span className="flex items-center gap-1">

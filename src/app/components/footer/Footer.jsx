@@ -24,7 +24,7 @@ export default function Footer() {
         </div>
 
         {/* Right - Copyright */}
-        <p className="text-center text-sm text-gray-400 md:text-right">
+        <p className="text-center italic text-sm text-gray-400 md:text-right">
           © 2026 FitLog — Workout Library. Train hard, log honest.
         </p>
       </div>

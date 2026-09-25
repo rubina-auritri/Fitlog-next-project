@@ -83,7 +83,7 @@ const MyPlan = () => {
                     MY PLAN
                 </h1>
 
-                <p className="mt-3 text-gray-400">
+                <p className="italic mt-3 text-gray-400">
                     Cap of five lifts for today. Finish them, then load more.
                 </p>
 
@@ -158,7 +158,7 @@ const MyPlan = () => {
                             NOTHING HERE YET
                         </h2>
 
-                        <p className="mx-auto mt-3 max-w-md text-gray-400">
+                        <p className="italic mx-auto mt-3 max-w-md text-gray-400">
                             Browse the library and add a lift to get today moving.
                         </p>
 
