@@ -21,7 +21,7 @@ const Hero = () => {
             LOG <br />EVERY SET.
           </h1>
 
-          <p className="mt-7 max-w-xl font-[var(--font-inter)] text-base leading-7 text-gray-400 sm:text-lg">
+          <p className="mt-7 italic max-w-xl font-[var(--font-inter)] text-base leading-7 text-gray-400 sm:text-lg">
             FitLog is a dark, no-nonsense gym companion: pick a lift,
             lock it into today&apos;s plan, and watch the week&apos;s work
             add up.
