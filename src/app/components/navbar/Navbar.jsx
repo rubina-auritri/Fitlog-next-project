@@ -35,7 +35,7 @@ export default function Navbar() {
         {/* Navigation Links */}
         <div className="flex items-center gap-3 text-sm sm:gap-5 sm:text-base md:gap-7">
           <Link
-            href="/workouts"
+            href="/"
             className={
               pathname === "/workouts"
                 ? "font-bold text-[#CCFF00]"
