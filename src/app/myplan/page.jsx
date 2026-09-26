@@ -215,7 +215,7 @@ const MyPlan = () => {
 
                                         <span className="flex items-center gap-2">
                                             <FaFire />
-                                            {workout.calories} kcal
+                                            {workout.caloriesBurned} kcal
                                         </span>
 
                                         <span className="flex items-center gap-2">
