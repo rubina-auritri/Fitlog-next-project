@@ -44,7 +44,7 @@ const MyPlan = () => {
 
     const calories = workouts.reduce(
         (total, workout) =>
-            total + Number(workout.calories || 0),
+            total + Number(workout.caloriesBurned || 0),
         0
     );
 
